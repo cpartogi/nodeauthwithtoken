@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  mongodb:
+    image: bitnami/mongodb:4.2.11
+    container_name: mongodb-local
+    environment:
+      - MONGODB_ROOT_PASSWORD=1234
+      - MONGODB_PORT_NUMBER=27017
+      - MONGODB_ADVERTISED_HOSTNAME=localhost
+      - MONGODB_ADVERTISED_PORT_NUMBER=27017
+      - MONGODB_REPLICA_SET_MODE=primary
+      - MONGODB_REPLICA_SET_KEY=replicasetkey123
+    ports:
+      - '27017:27017'      
+  
+  redis:
+    image: docker.io/bitnami/redis:7.0
+    container_name: redis-local
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - '7379:6379'
