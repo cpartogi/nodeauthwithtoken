@@ -41,7 +41,7 @@ router.post('/', async (req, res) => {
             statusCode: 200,
             message: "Success register user",
             timeStamp: utcDate,
-            data : newUser,
+            data : {id: newUser._id},
          });
     } catch (err) {
         res.status(400).json({
