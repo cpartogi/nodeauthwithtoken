@@ -64,13 +64,5 @@ exports.updatehUser = (id, userData) => {
 };
 
 exports.removeById = (userId) => {
-    return new Promise((resolve, reject) => {
-        User.deleteMany({_id: userId}, (err) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(err);
-            }
-        });
-    });
+    return  User.deleteOne({_id: userId});
 };
