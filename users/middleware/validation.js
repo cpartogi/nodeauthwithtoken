@@ -1,7 +1,5 @@
 const UserModel = require('../models/user_model');
-const crypto = require('crypto');
-const utcDate = new Date(Date.now()).toISOString()
-
+const utcDate = new Date(Date.now()).toISOString();
 
 exports.isUserNameExist = (req, res, next) => {
     UserModel.findByUserName(req.body.userName)

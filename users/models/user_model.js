@@ -1,17 +1,5 @@
 const mongoose = require('../../lib/service/mongoose').mongoose;
 const Schema = mongoose.Schema;
-const redis = require('redis');
-const client = redis.createClient();
-
-console.log("redis connection ....")
-client.on('error', err => console.log('Redis Client Error', err));
-
-client.connect().then(()=>{
-    console.log('redis is connected')
-}).catch(err=>{
-    console.log('redis connection failed');
-})
-
 
 const userSchema = new Schema({
     userName: String,
@@ -66,15 +54,10 @@ exports.findById = (id) => {
 
 exports.createUser = (userData) => {
     const user = new User(userData);
-    const jsonData = JSON.stringify(userData);
-    client.set('redis_cpartogi_betest_accnumber_'+user.accountNumber, jsonData);
-    client.set('redis_cpartogi_betest_idnumber_'+user.identityNumber, jsonData);
     return user.save();
 };
 
 exports.updatehUser = (id, userData) => {
-    client.del('redis_cpartogi_betest_accnumber_'+userData.accountNumber, jsonData);
-    client.del('redis_cpartogi_betest_idnumber_'+userData.identityNumber, jsonData);
     return User.findOneAndUpdate({
         _id: id
     }, userData);
