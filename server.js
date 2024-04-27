@@ -6,6 +6,30 @@ const app = express();
 const AuthorizationRouter = require('./auth/routes');
 const UsersRouter = require('./users/routes');
 
+swaggerJsdoc = require("swagger-jsdoc"),
+swaggerUi = require("swagger-ui-express");
+
+
+const options = {
+    definition: {
+      openapi: "3.0.0",
+      info: {
+        title: "Authentication API documentation",
+        version: "0.1.0",
+        description:
+          "This is a auth API application made with Express and documented with Swagger",
+      },
+      servers: [
+        {
+          url: "http://localhost:3000/",
+        },
+      ],
+    },
+    apis: ["./auth/routes.js"],
+  };
+
+  const specs = swaggerJsdoc(options);
+
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Credentials', 'true');
@@ -20,6 +44,15 @@ app.use(function (req, res, next) {
 });
 
 app.use(express.json());
+
+app.use(
+    "/api-docs",
+    swaggerUi.serve,
+    swaggerUi.setup(specs, {
+      explorer: true,
+    })
+  );
+
 AuthorizationRouter.routesConfig(app);
 UsersRouter.routesConfig(app);
 
