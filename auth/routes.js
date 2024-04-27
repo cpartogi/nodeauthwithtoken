@@ -63,6 +63,10 @@ const AuthValidationMiddleware = require('../lib/middleware/validation_middlewar
  *         data:
  *           type: object
  *           description: data
+ *   securitySchemes:
+ *     basicauth:
+ *       type: http
+ *       scheme: bearer
  */
 
 /**
