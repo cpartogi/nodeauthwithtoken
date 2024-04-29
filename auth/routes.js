@@ -12,7 +12,7 @@ const AuthValidationMiddleware = require('../lib/middleware/validation_middlewar
  *         - userName
  *         - password
  *       properties:
- *         username:
+ *         userName:
  *           type: string
  *           description: user name
  *         password:

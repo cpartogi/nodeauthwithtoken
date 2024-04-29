@@ -79,7 +79,6 @@ exports.getByIdentitytNumber = (req, res) => {
             } else {      
             var response = new Object();
             result.forEach(obj => {
-                console.log(`username = ${obj.userName}, accountNumber = ${obj.accountNumber}`);
                 response["id"] = obj.id;
                 response[`userName`] = obj.userName;
                 response["accountNumber"] = obj.accountNumber;
